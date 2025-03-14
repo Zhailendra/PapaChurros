@@ -16,9 +16,6 @@ ANpcSpawner::ANpcSpawner()
 	SpawnNpc2 = CreateDefaultSubobject<USceneComponent>(TEXT("SpawnNpc2"));
 	SpawnNpc2->SetupAttachment(RootComponent);
 
-	SpawnNpc3 = CreateDefaultSubobject<USceneComponent>(TEXT("SpawnNpc3"));
-	SpawnNpc3->SetupAttachment(RootComponent);
-
 }
 
 void ANpcSpawner::BeginPlay()
@@ -40,7 +37,7 @@ void ANpcSpawner::Tick(float DeltaTime)
 		if (*It) CurrentNpcCount++;
 	}
 
-	TArray<USceneComponent*> AvailableSpawnPoints = { SpawnNpc1, SpawnNpc2, SpawnNpc3 };
+	TArray<USceneComponent*> AvailableSpawnPoints = { SpawnNpc1, SpawnNpc2 };
 
 	while (CurrentNpcCount < NpcCount && AvailableSpawnPoints.Num() > 0)
 	{

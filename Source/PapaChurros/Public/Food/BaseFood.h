@@ -12,7 +12,13 @@ UENUM(BlueprintType)
 enum class EFoodType : uint8
 {
 	Churros UMETA(DisplayName = "Churros"),
-	Croustillions UMETA(DisplayName = "Croustillions")
+	Croustillions UMETA(DisplayName = "Croustillions"),
+	Donut UMETA(DisplayName = "Donut"),
+	Gauffre UMETA(DisplayName = "Gauffre"),
+
+	Cola UMETA(DisplayName = "Cola"),
+	Lemon UMETA(DisplayName = "Lemon"),
+	OrangeBlast UMETA(DisplayName = "OrangeBlast")
 };
 
 UCLASS()
