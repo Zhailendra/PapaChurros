@@ -51,10 +51,10 @@ void APlayerPawn::Interact()
 	PerformRaycast();
 }
 
-void APlayerPawn::InteractWithObject(AActor* InteractableActor)
+void APlayerPawn::InteractWithObject_Implementation(AActor* InteractableActor)
 {
 	GEngine->AddOnScreenDebugMessage(1, 3, FColor::Green, FString::Printf(TEXT("Interacting with %s"), *InteractableActor->GetName()));
-	InteractableActor->Destroy();
+	//InteractableActor->Destroy();
 }
 
 void APlayerPawn::PerformRaycast()

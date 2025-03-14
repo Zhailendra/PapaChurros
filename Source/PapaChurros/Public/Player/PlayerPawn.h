@@ -25,6 +25,7 @@ protected:
 
 	void Interact();
 	void PerformRaycast();
+	UFUNCTION(BlueprintNativeEvent)
 	void InteractWithObject(AActor* InteractableActor);
 	
 private:
