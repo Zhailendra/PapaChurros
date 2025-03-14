@@ -14,7 +14,7 @@ class PAPACHURROS_API UBaseGameInstance : public UGameInstance
 public:
 
 	UFUNCTION(BlueprintCallable)
-	void AddOrder();
+	void AddOrder(UBaseOrder* Order);
 
 	UFUNCTION(BlueprintCallable)
 	void RemoveOrder(UBaseOrder* Order);
