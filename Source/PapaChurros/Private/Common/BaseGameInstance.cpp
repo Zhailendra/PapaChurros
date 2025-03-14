@@ -19,8 +19,6 @@ void UBaseGameInstance::AddOrder()
 		NewOrder->AddAliment(NewFood2);
 	}
 
-	UE_LOG(LogTemp, Display, TEXT("AddOrder"));
-	
 	Orders.Add(NewOrder);
 }
 

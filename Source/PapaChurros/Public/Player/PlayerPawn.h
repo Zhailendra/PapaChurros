@@ -24,6 +24,8 @@ protected:
 	virtual void BeginPlay() override;
 
 	void Interact();
+	void PerformRaycast();
+	void InteractWithObject(AActor* InteractableActor);
 	
 private:
 

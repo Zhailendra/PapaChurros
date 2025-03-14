@@ -48,5 +48,43 @@ void APlayerPawn::Tick(float DeltaTime)
 
 void APlayerPawn::Interact()
 {
-	GEngine->AddOnScreenDebugMessage(1, 3, FColor::Red, "Interacting");
+	PerformRaycast();
+}
+
+void APlayerPawn::InteractWithObject(AActor* InteractableActor)
+{
+	GEngine->AddOnScreenDebugMessage(1, 3, FColor::Green, FString::Printf(TEXT("Interacting with %s"), *InteractableActor->GetName()));
+	InteractableActor->Destroy();
+}
+
+void APlayerPawn::PerformRaycast()
+{
+	if (const APlayerController* PlayerController = Cast<APlayerController>(GetController()))
+	{
+		float TouchX, TouchY;
+		bool bIsTouching;
+
+		PlayerController->GetInputTouchState(ETouchIndex::Touch1, TouchX, TouchY, bIsTouching);
+
+		if (bIsTouching)
+		{
+			FVector WorldLocation, WorldDirection;
+			if (PlayerController->DeprojectScreenPositionToWorld(TouchX, TouchY, WorldLocation, WorldDirection))
+			{
+				FVector End = WorldLocation + (WorldDirection * 10000.0f);
+
+				FHitResult HitResult;
+				FCollisionQueryParams CollisionParams;
+				CollisionParams.AddIgnoredActor(this);
+
+				if (GetWorld()->LineTraceSingleByChannel(HitResult, WorldLocation, End, ECC_Visibility, CollisionParams))
+				{
+					if (HitResult.GetActor() && HitResult.GetActor()->ActorHasTag("Interactable"))
+					{
+						InteractWithObject(HitResult.GetActor());
+					}
+				}
+			}
+		}
+	}
 }
