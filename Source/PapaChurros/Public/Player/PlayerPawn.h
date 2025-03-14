@@ -6,6 +6,8 @@
 
 class USpringArmComponent;
 class UCameraComponent;
+class UInputMappingContext;
+class UInputAction;
 
 UCLASS()
 class PAPACHURROS_API APlayerPawn : public ABasePawn
@@ -20,6 +22,10 @@ public:
 	
 protected:
 	virtual void BeginPlay() override;
+
+	void Interact();
+	void PerformRaycast();
+	void InteractWithObject(AActor* InteractableActor);
 	
 private:
 
@@ -28,5 +34,12 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Component", BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* CameraComponent;
+
+	UPROPERTY(EditAnywhere, Category = "Player Input")
+	UInputMappingContext* PlayerContext;
+
+	UPROPERTY(EditAnywhere, Category = "Player Input")
+	UInputAction* InteractAction;
+
 
 };
