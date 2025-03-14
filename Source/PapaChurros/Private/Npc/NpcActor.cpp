@@ -46,7 +46,7 @@ void ANpcActor::InitOrder()
 		Order = NewObject<UBaseOrder>(this);
 	}
 
-	int NbAliments = FMath::RandRange(3, 10);
+	int NbAliments = FMath::RandRange(minFood, maxFood);
 	Order->SetNbAliment(NbAliments);
 
 	bool bHasDrink = FMath::RandBool();
