@@ -39,7 +39,13 @@ protected:
 	UPROPERTY()
 	UPoolSubsystem* PoolSubsystem;
 
+
 private:
+	UPROPERTY(EditAnywhere, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	int minFood = 2;
+	
+	UPROPERTY(EditAnywhere, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	int maxFood = 3;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* MeshComponent;
