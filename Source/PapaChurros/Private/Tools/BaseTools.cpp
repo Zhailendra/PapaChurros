@@ -3,25 +3,29 @@
 
 #include "Tools/BaseTools.h"
 
-// Sets default values
 ABaseTools::ABaseTools()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	ToolMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ToolMesh"));
+	RootComponent = ToolMesh;
+
+	ToolName = "DefaultTool";
+	MaxCapacity = 1.0f;
+	bIsInUse = false;
 }
 
-// Called when the game starts or when spawned
 void ABaseTools::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
-// Called every frame
-void ABaseTools::Tick(float DeltaTime)
+void ABaseTools::StartUse()
 {
-	Super::Tick(DeltaTime);
-
+	bIsInUse = true;
 }
 
+void ABaseTools::StopUse()
+{
+	bIsInUse = false;
+}
