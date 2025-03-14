@@ -52,7 +52,7 @@ void ANpcActor::InitOrder()
 	bool bHasDrink = FMath::RandBool();
 	Order->SetHasDrink(bHasDrink);
 
-	TArray<EFoodType> FoodTypes = { EFoodType::Churros, EFoodType::Croustillions };
+	TArray<EFoodType> FoodTypes = { EFoodType::Churros, EFoodType::Croustillions, EFoodType::Donut, EFoodType::Gauffre };
 
 	Order->GetAliments().Empty();
 
@@ -68,7 +68,19 @@ void ANpcActor::InitOrder()
 		}
 	}
 
-	UE_LOG(LogTemp, Log, TEXT("NPC Order: %d aliments, Boisson: %s"), NbAliments, bHasDrink ? TEXT("Oui") : TEXT("Non"));
+	TArray<EFoodType> DrinkTypes = { EFoodType::Cola, EFoodType::Lemon, EFoodType::OrangeBlast };
+
+	if (bHasDrink) {
+		EFoodType RandomDrinkType = DrinkTypes[FMath::RandRange(0, DrinkTypes.Num() - 1)];
+
+		ABaseFood* NewDrink = PoolSubsystem->SpawnFromPool<ABaseFood>(FoodClass, FVector::ZeroVector, FRotator::ZeroRotator, nullptr);
+		if (NewDrink)
+		{
+			NewDrink->SetFoodType(RandomDrinkType);
+			Order->AddAliment(NewDrink);
+		}
+	}
+
 	for (ABaseFood* Food : Order->GetAliments())
 	{
 		if (Food)

@@ -38,7 +38,4 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Spawner")
 	USceneComponent* SpawnNpc2;
-
-	UPROPERTY(EditAnywhere, Category = "Spawner")
-	USceneComponent* SpawnNpc3;
 };
